@@ -10,10 +10,42 @@ function insert(email , password)
     DB.run('insert into usuarios(email,pass) values(?,?)',email, password, function(err)
     {
         if(err)
-            console.log('error xd');
+            console.log(err.message);
     });
 
-    console.log('se insereto esa');
+    console.log('inserted');
+}
+
+var auth;
+function authentication(email, pass)
+{
+    query = 'select * from usuarios where email = ? and pass = ?';
+
+    
+   
+     
+
+      DB.get(query, [email,pass], (err,row) => {
+        if(err)
+        {
+            console.log(err.message);
+            auth = false;
+        }
+        else
+        { 
+            console.log(row.email + '' + row.pass);
+            
+            if(row == undefined)
+            auth = false;
+            else
+            auth=true;
+        }
+        
+    }) 
+    console.log(auth);
+    return auth;;
+
 }
     
     module.exports.insert = insert;
+    module.exports.authentication = authentication;
