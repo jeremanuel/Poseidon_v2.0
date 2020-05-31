@@ -5,8 +5,7 @@ let DB = new DTB.Database('./db/database.');
 DB.run('CREATE TABLE IF NOT EXISTS usuarios(email text PRIMARY KEY, pass text NOT NULL)');
 
 
-function insert(email , password)
-{
+function insert(email , password){
     DB.run('insert into usuarios(email,pass) values(?,?)',email, password, function(err)
     {
         if(err)
@@ -16,29 +15,23 @@ function insert(email , password)
     console.log('inserted');
 }
 
-var auth;
-function authentication(email, pass)
+
+function authentication(email, pass, fn)
 {
     query = 'select * from usuarios where email = ? and pass = ?';
 
-    
-   
-     
-
-      DB.get(query, [email,pass], (err,row) => {
+      DB.get(query, [email,pass], function(err,row){
         if(err)
         {
             console.log(err.message);
-            auth = false;
+            fn(false);
         }
         else
         { 
-            console.log(row.email + '' + row.pass);
-            
-            if(row == undefined)
-            auth = false;
+           if(row == undefined)
+            fn(false);
             else
-            auth=true;
+            fn(true); 
         }
         
     }) 
@@ -46,6 +39,17 @@ function authentication(email, pass)
     return auth;;
 
 }
-    
+
+function delet(email, password){
+    if ((authentication(email,password))) {
+        DB.run('delete from usuarios where email =' + email, function(err){
+            if(err)
+                console.log('error xd');
+        });
+    }
+    console.log('se elimino ');
+}
+
     module.exports.insert = insert;
     module.exports.authentication = authentication;
+    module.exports.delet = delet;

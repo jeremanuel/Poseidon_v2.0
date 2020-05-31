@@ -18,14 +18,21 @@ btnLog.addEventListener('click', () => {
 
     var email = document.getElementById('email').value;
     var pass = document.    getElementById('password').value;
-    if(db.authentication(email,pass))
-    {
-        console.log('existe')
-    }
-    else
-    (
-        console.log('no existe')
-    )
+
+    if(db.authentication(email,pass, function(result){
+
+        if(result==true)
+        {
+            console.log('el usuario existe');
+        }
+        else
+        {
+            console.log('el usuario no existe');
+        }
+
+
+    }));
+ 
 
 })
 
