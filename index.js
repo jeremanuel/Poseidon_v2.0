@@ -13,7 +13,7 @@ app.on("ready", () => {
       nodeIntegration:true
     }
   });
-  window.loadFile('./LoginWindow.html');
+  window.loadFile('./views/LoginWindow.html');
   
 
 }) 
