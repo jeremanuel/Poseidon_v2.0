@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron');
-
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 
 
@@ -14,9 +14,7 @@ app.on("ready", () => {
       nodeIntegration:true
     }
   });
-  window.loadFile('./views/LoginWindow.html');
-  
-
+  window.loadFile('./views/MainWindow.html');
 }) 
 
 

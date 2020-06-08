@@ -17,7 +17,7 @@ btnReg.addEventListener('click', () => {
 btnLog.addEventListener('click', () => {
 
     var email = document.getElementById('email').value;
-    var pass = document.    getElementById('password').value;
+    var pass = document.getElementById('password').value;
 
     if(db.authentication(email,pass, function(result){
 

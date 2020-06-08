@@ -29,15 +29,12 @@ function authentication(email, pass, fn)
         else
         { 
            if(row == undefined)
-            fn(false);
+                fn(false);
             else
-            fn(true); 
+                fn(true); 
         }
         
     }) 
-    console.log(auth);
-    return auth;;
-
 }
 
 function delet(email, password){
